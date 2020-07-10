@@ -7,5 +7,6 @@ namespace TestCreatorWebApp.Dtos
 {
     public class UserDto
     {
+
     }
 }

@@ -67,12 +67,15 @@ namespace TestCreatorWebApp.Controllers
 
         // GET api/quiz/Latest
         [HttpGet("Latest/{num?}")]
-        public string Latest(int num = 10)
+        public IActionResult Latest(int num = 10)
         {
             var quizzes = Objects(num);
 
             // send data as json
-            return JsonConvert.SerializeObject(quizzes, Formatting.Indented);
+            return new JsonResult(quizzes, new JsonSerializerSettings()
+            {
+                Formatting = Formatting.Indented,
+            });
         }
 
         // GET api/quiz/ByTitle/{num?}
