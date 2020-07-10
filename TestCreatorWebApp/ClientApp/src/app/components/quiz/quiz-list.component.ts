@@ -1,5 +1,5 @@
 import { HttpClient } from "@angular/common/http";
-import { Component, Inject } from "@angular/core";
+import { Component, Inject, Input, OnInit } from "@angular/core";
 
 @Component({
   selector: "quiz-list",
@@ -7,19 +7,36 @@ import { Component, Inject } from "@angular/core";
   styleUrls: ['./quiz-list.component.css']
 })
 
-export class QuizListComponent {
+export class QuizListComponent implements OnInit {
+  @Input() class: string;
   title: string;
   selectedQuiz: Quiz;
   quizzes: Quiz[];
 
-  constructor(http: HttpClient, @Inject('BASE_URL') baseUrl: string) {
+  constructor(private http: HttpClient, @Inject('BASE_URL') private baseUrl: string) { }
 
-    this.title = "Newest quizzes";
-    var url = baseUrl + "api/quiz/Latest";
+  ngOnInit() {
+    var url = this.baseUrl + "api/quiz/";
 
-    http.get<Quiz[]>(url).subscribe(result => {
-        this.quizzes = result;
-      }, error => console.error(error));
+    switch (this.class) {
+    case "latest":
+    default:
+      this.title = "Newest quizzes";
+      url += "Latest/";
+      break;
+    case "byTitle":
+      this.title = "Alphabetical quizzes";
+      url += "byTitle/";
+      break;
+    case "random":
+      this.title = "Random quizzes";
+      url += "random/";
+      break;
+    }
+
+    this.http.get<Quiz[]>(url).subscribe(result => {
+      this.quizzes = result;
+    }, error => console.error(error));
   }
 
   onSelect(quiz: Quiz) {
