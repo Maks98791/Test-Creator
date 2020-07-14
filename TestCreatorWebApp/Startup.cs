@@ -78,6 +78,13 @@ namespace TestCreatorWebApp
                     spa.UseAngularCliServer(npmScript: "start");
                 }
             });
+
+            using (var serviceScope = app.ApplicationServices.GetRequiredService<IServiceScopeFactory>().CreateScope())
+            {
+                var context = serviceScope.ServiceProvider.GetService<TestCreatorContext>();
+                context.Database.Migrate();
+                Seeder.Seed(context);
+            }
         }
     }
 }
