@@ -22,5 +22,7 @@ namespace TestCreatorWebApp.Db.Models
         public int ViewCount { get; set; }
         public DateTime CreatedDate { get; set; }
         public DateTime LastModifiedDate { get; set; }
+        public List<Result> Results { get; set; }
+        public List<Question> Questions { get; set; }
     }
 }

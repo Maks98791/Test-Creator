@@ -16,5 +16,6 @@ namespace TestCreatorWebApp.Db.Models
         public int Flags { get; set; }
         public DateTime CreatedDate { get; set; }
         public DateTime LastModifiedDate { get; set; }
+        public List<Answer> Answers { get; set; }
     }
 }

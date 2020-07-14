@@ -9,8 +9,6 @@ namespace TestCreatorWebApp.Db.Models
     public class Answer
     {
         public int AnswerId { get; set; }
-        public int QuizId { get; set; }
-        public Quiz Quiz { get; set; }
         public int QuestionId { get; set; }
         public Question Question { get; set; }
         public string Text { get; set; }
