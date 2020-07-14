@@ -38,13 +38,16 @@ namespace TestCreatorWebApp.Controllers
 
         // GET api/quiz/{quizId}
         [HttpGet("{quizId}")]
-        public string Get(int quizId)
+        public IActionResult Get(int quizId)
         {
             var quizzes = Objects(10);
             var quiz = quizzes.FirstOrDefault(q => q.QuizId == quizId);
 
             // send data as json
-            return JsonConvert.SerializeObject(quiz, Formatting.Indented);
+            return new JsonResult(quiz, new JsonSerializerSettings()
+            {
+                Formatting = Formatting.Indented
+            });
         }
 
         [HttpPost]
@@ -59,7 +62,7 @@ namespace TestCreatorWebApp.Controllers
             throw new NotImplementedException();
         }
 
-        [HttpGet("{quizId}")]
+        [HttpDelete("{quizId}")]
         public IActionResult Delete(int quizId)
         {
             throw new NotImplementedException();

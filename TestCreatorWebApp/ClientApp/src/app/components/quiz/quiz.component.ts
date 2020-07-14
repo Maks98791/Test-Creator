@@ -15,6 +15,7 @@ export class QuizComponent {
     // utworzenie pustego obiektu quiz
     this.quiz = <Quiz>{};
     var id = +this.activatedRoute.snapshot.params["id"];
+    console.log("wczytane id: " + id);
 
     if (id) {
       var url = this.baseUrl + "api/quiz/" + id;
