@@ -40,19 +40,42 @@ namespace TestCreatorWebApp.Controllers
         [HttpPost]
         public IActionResult Post(QuizDto quizDto)
         {
-            throw new NotImplementedException();
+            if (quizDto == null)
+            {
+                return BadRequest();
+            }
+
+            var quiz = _quizService.Add(quizDto);
+
+            return Ok(quiz);
         }
 
         [HttpPost]
         public IActionResult Put(QuizDto quizDto)
         {
-            throw new NotImplementedException();
+            if (quizDto == null)
+            {
+                return BadRequest();
+            }
+
+            var quiz = _quizService.Update(quizDto);
+
+            return Ok(quiz);
         }
 
         [HttpDelete("{quizId}")]
         public IActionResult Delete(int quizId)
         {
-            throw new NotImplementedException();
+            var quiz = _quizService.GetById(quizId);
+
+            if (quiz == null)
+            {
+                return NotFound("quiz not found");
+            }
+
+            _quizService.Delete(quizId);
+
+            return Ok();
         }
 
         // GET api/quiz/Latest
@@ -61,31 +84,25 @@ namespace TestCreatorWebApp.Controllers
         {
             var quizzes = _quizService.GetLatest(num);
 
-            // send data as json
-            return new JsonResult(quizzes, new JsonSerializerSettings()
-            {
-                Formatting = Formatting.Indented,
-            });
+            return Ok(quizzes);
         }
 
         // GET api/quiz/ByTitle/{num?}
         [HttpGet("ByTitle/{num:int?}")]
-        public string ByTitle(int num = 10)
+        public IActionResult ByTitle(int num = 10)
         {
             var quizzes = _quizService.GetByTitle(num);
 
-            // send data as json
-            return JsonConvert.SerializeObject(quizzes.OrderBy(t => t.Title), Formatting.Indented);
+            return Ok(quizzes);
         }
 
         // GET api/quiz/Random/{num?}
         [HttpGet("Random/{num:int?}")]
-        public string Random(int num = 10)
+        public IActionResult Random(int num = 10)
         {
             var quizzes = _quizService.GetRandom(num);
 
-            // send data as json
-            return JsonConvert.SerializeObject(quizzes.OrderBy(n => Guid.NewGuid()), Formatting.Indented);
+            return Ok(quizzes);
         }
     }
 }

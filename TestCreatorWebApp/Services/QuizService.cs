@@ -2,18 +2,22 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using AutoMapper;
 using TestCreatorWebApp.Db;
 using TestCreatorWebApp.Db.Models;
+using TestCreatorWebApp.Dtos;
 
 namespace TestCreatorWebApp.Services
 {
     public class QuizService : IQuizService
     {
         private readonly TestCreatorContext _context;
+        private readonly IMapper _mapper;
 
-        public QuizService(TestCreatorContext context)
+        public QuizService(TestCreatorContext context, IMapper mapper)
         {
             _context = context;
+            _mapper = mapper;
         }
 
         public Quiz GetById(int quizId)
@@ -43,6 +47,34 @@ namespace TestCreatorWebApp.Services
                 .OrderBy(q => q.Title)
                 .Take(num)
                 .ToList();
+        }
+
+        public Quiz Add(QuizDto quizDto)
+        {
+            var quiz = _mapper.Map<Quiz>(quizDto);
+
+            _context.Add(quiz);
+            _context.SaveChanges();
+
+            return quiz;
+        }
+
+        public Quiz Update(QuizDto quizDto)
+        {
+            var quiz = _mapper.Map<Quiz>(quizDto);
+
+            _context.Update(quiz);
+            _context.SaveChanges();
+
+            return quiz;
+        }
+
+        public void Delete(int quizId)
+        {
+            var quiz = GetById(quizId);
+
+            _context.Quizzes.Remove(quiz);
+            _context.SaveChanges();
         }
     }
 }

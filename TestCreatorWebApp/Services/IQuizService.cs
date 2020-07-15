@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using TestCreatorWebApp.Db.Models;
+using TestCreatorWebApp.Dtos;
 
 namespace TestCreatorWebApp.Services
 {
@@ -12,5 +13,8 @@ namespace TestCreatorWebApp.Services
         public List<Quiz> GetLatest(int num);
         public List<Quiz> GetRandom(int num);
         public List<Quiz> GetByTitle(int num);
+        public Quiz Add(QuizDto quizDto);
+        public Quiz Update(QuizDto quizDto);
+        public void Delete(int quizId);
     }
 }
