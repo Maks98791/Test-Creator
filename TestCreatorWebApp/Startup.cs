@@ -1,3 +1,4 @@
+using System.Diagnostics.Tracing;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -7,6 +8,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Serialization;
 using TestCreatorWebApp.Db;
 using TestCreatorWebApp.Services;
 
@@ -24,7 +26,8 @@ namespace TestCreatorWebApp
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddControllersWithViews().AddNewtonsoftJson();
+            services.AddControllersWithViews().AddNewtonsoftJson(options =>
+                options.SerializerSettings.ContractResolver = new DefaultContractResolver());
 
             services.AddEntityFrameworkSqlServer();
             services.AddDbContext<TestCreatorContext>(options =>

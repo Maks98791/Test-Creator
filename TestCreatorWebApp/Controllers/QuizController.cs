@@ -9,7 +9,6 @@ using Newtonsoft.Json;
 using TestCreatorWebApp.Db.Models;
 using TestCreatorWebApp.Dtos;
 using TestCreatorWebApp.Services;
-using JsonSerializer = Newtonsoft.Json.JsonSerializer;
 
 namespace TestCreatorWebApp.Controllers
 {
@@ -30,11 +29,12 @@ namespace TestCreatorWebApp.Controllers
         {
             var quiz = _quizService.GetById(quizId);
 
-            // send data as json
-            return new JsonResult(quiz, new JsonSerializerSettings()
+            if (quiz == null)
             {
-                Formatting = Formatting.Indented
-            });
+                return NotFound("quiz not found");
+            }
+
+            return Ok(quiz);
         }
 
         [HttpPost]
