@@ -8,6 +8,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Newtonsoft.Json;
 using TestCreatorWebApp.Db;
+using TestCreatorWebApp.Services;
 
 namespace TestCreatorWebApp
 {
@@ -28,6 +29,11 @@ namespace TestCreatorWebApp
             services.AddEntityFrameworkSqlServer();
             services.AddDbContext<TestCreatorContext>(options =>
                 options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+
+            services.AddScoped<IQuizService, QuizService>();
+            services.AddScoped<IQuestionService, QuestionService>();
+            services.AddScoped<IAnswerService, AnswerService>();
+            services.AddScoped<IResultService, ResultService>();
 
             // In production, the Angular files will be served from this directory
             services.AddSpaStaticFiles(configuration =>

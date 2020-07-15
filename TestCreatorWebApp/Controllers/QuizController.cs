@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 using TestCreatorWebApp.Db.Models;
 using TestCreatorWebApp.Dtos;
+using TestCreatorWebApp.Services;
 using JsonSerializer = Newtonsoft.Json.JsonSerializer;
 
 namespace TestCreatorWebApp.Controllers
@@ -16,32 +17,18 @@ namespace TestCreatorWebApp.Controllers
     [ApiController]
     public class QuizController : ControllerBase
     {
-        public List<Quiz> Objects(int num)
+        private readonly IQuizService _quizService;
+
+        public QuizController(IQuizService quizService)
         {
-            var quizzes = new List<Quiz>();
-
-            // add sample quizzes
-            for (int i = 0; i < num; i++)
-            {
-                quizzes.Add(new Quiz
-                {
-                    QuizId = i + 1,
-                    Title = "jakis przykladowy tekst",
-                    Description = String.Format("dupa dupa dupa {0}", i + 1),
-                    CreatedDate = DateTime.Now,
-                    LastModifiedDate = DateTime.Now
-                });
-            }
-
-            return quizzes;
+            _quizService = quizService;
         }
 
         // GET api/quiz/{quizId}
         [HttpGet("{quizId}")]
         public IActionResult Get(int quizId)
         {
-            var quizzes = Objects(10);
-            var quiz = quizzes.FirstOrDefault(q => q.QuizId == quizId);
+            var quiz = _quizService.GetById(quizId);
 
             // send data as json
             return new JsonResult(quiz, new JsonSerializerSettings()
@@ -72,7 +59,7 @@ namespace TestCreatorWebApp.Controllers
         [HttpGet("Latest/{num?}")]
         public IActionResult Latest(int num = 10)
         {
-            var quizzes = Objects(num);
+            var quizzes = _quizService.GetLatest(num);
 
             // send data as json
             return new JsonResult(quizzes, new JsonSerializerSettings()
@@ -85,7 +72,7 @@ namespace TestCreatorWebApp.Controllers
         [HttpGet("ByTitle/{num:int?}")]
         public string ByTitle(int num = 10)
         {
-            var quizzes = Objects(num);
+            var quizzes = _quizService.GetByTitle(num);
 
             // send data as json
             return JsonConvert.SerializeObject(quizzes.OrderBy(t => t.Title), Formatting.Indented);
@@ -95,7 +82,7 @@ namespace TestCreatorWebApp.Controllers
         [HttpGet("Random/{num:int?}")]
         public string Random(int num = 10)
         {
-            var quizzes = Objects(num);
+            var quizzes = _quizService.GetRandom(num);
 
             // send data as json
             return JsonConvert.SerializeObject(quizzes.OrderBy(n => Guid.NewGuid()), Formatting.Indented);
