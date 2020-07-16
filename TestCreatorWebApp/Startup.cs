@@ -28,7 +28,10 @@ namespace TestCreatorWebApp
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews().AddNewtonsoftJson(options =>
-                options.SerializerSettings.ContractResolver = new DefaultContractResolver());
+            {
+                options.SerializerSettings.ContractResolver = new DefaultContractResolver();
+                options.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore;
+            });
 
             services.AddEntityFrameworkSqlServer();
             services.AddDbContext<TestCreatorContext>(options =>
