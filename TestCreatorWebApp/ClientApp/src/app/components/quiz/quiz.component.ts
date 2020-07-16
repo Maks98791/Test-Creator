@@ -26,4 +26,18 @@ export class QuizComponent {
       this.router.navigate(["home"]);
     }
   }
+
+  onEdit() {
+    this.router.navigate(["quiz/edit", this.quiz.QuizId]);
+  }
+
+  onDelete() {
+    if (confirm("Are you sure you want to delete that quiz?")) {
+      var url = this.baseUrl + "api/quiz/" + this.quiz.QuizId;
+
+      this.http.delete(url).subscribe(result => {
+        this.router.navigate(["home"]);
+      })
+    }
+  }
 }

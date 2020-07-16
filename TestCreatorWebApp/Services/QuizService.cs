@@ -53,6 +53,11 @@ namespace TestCreatorWebApp.Services
         {
             var quiz = _mapper.Map<Quiz>(quizDto);
 
+            if (quiz.UserId == 0)
+            {
+                quiz.UserId = _context.Users.FirstOrDefault(u => u.Name == "Admin").UserId;
+            }
+
             _context.Add(quiz);
             _context.SaveChanges();
 
@@ -62,6 +67,11 @@ namespace TestCreatorWebApp.Services
         public Quiz Update(QuizDto quizDto)
         {
             var quiz = _mapper.Map<Quiz>(quizDto);
+
+            if (quiz.UserId == 0)
+            {
+                quiz.UserId = _context.Users.FirstOrDefault(u => u.Name == "Admin").UserId;
+            }
 
             _context.Update(quiz);
             _context.SaveChanges();

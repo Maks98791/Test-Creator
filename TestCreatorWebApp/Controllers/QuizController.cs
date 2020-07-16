@@ -50,7 +50,7 @@ namespace TestCreatorWebApp.Controllers
             return Ok(quiz);
         }
 
-        [HttpPost]
+        [HttpPut]
         public IActionResult Put(QuizDto quizDto)
         {
             if (quizDto == null)
