@@ -12,6 +12,8 @@ namespace TestCreatorWebApp.Dtos
     {
         public Quiz Quiz { get; set; }
         public string Text { get; set; }
+        public int? MinValue { get; set; }
+        public int? MaxValue { get; set; }
         public string Notes { get; set; }
         [DefaultValue(0)]
         public int Type { get; set; }

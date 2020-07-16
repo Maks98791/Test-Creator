@@ -38,7 +38,7 @@ namespace TestCreatorWebApp.Controllers
         }
 
         [HttpPost]
-        public IActionResult Post(AnswerDto answerDto)
+        public IActionResult Post([FromBody] AnswerDto answerDto)
         {
             if (answerDto == null)
             {
@@ -51,7 +51,7 @@ namespace TestCreatorWebApp.Controllers
         }
 
         [HttpPost]
-        public IActionResult Put(AnswerDto answerDto)
+        public IActionResult Put([FromBody] AnswerDto answerDto)
         {
             if (answerDto == null)
             {

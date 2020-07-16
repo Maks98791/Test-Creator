@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 using TestCreatorWebApp.Db.Models;
 using TestCreatorWebApp.Dtos;
+using TestCreatorWebApp.Services;
 
 namespace TestCreatorWebApp.Controllers
 {
@@ -14,58 +15,83 @@ namespace TestCreatorWebApp.Controllers
     [ApiController]
     public class ResultController : ControllerBase
     {
-        public List<Result> Objects(int num, int quizId)
+        private readonly IResultService _resultService;
+        private readonly IQuizService _quizService;
+
+        public ResultController(IResultService resultService, IQuizService quizService)
         {
-            var results = new List<Result>();
-
-            // add sample results
-            for (int i = 0; i < num; i++)
-            {
-                results.Add(new Result
-                {
-                    ResultId = i + 1,
-                    QuizId = quizId,
-                    Text = "jakis przykladowy tekst",
-                    CreatedDate = DateTime.Now,
-                    LastModifiedDate = DateTime.Now
-                });
-            }
-
-            return results;
+            _resultService = resultService;
+            _quizService = quizService;
         }
 
         [HttpGet("{resultId}")]
         public IActionResult Get(int resultId)
         {
-            return Content("todo");
+            var result = _resultService.GetById(resultId);
+
+            if (result == null)
+            {
+                return NotFound("result not found");
+            }
+
+            return Ok(result);
         }
 
         [HttpPost]
-        public IActionResult Post(ResultDto resultDto)
+        public IActionResult Post([FromBody] ResultDto resultDto)
         {
-            throw new NotImplementedException();
+            if (resultDto == null)
+            {
+                return BadRequest();
+            }
+
+            var result = _resultService.Add(resultDto);
+
+            return Ok(result);
         }
 
         [HttpPost]
-        public IActionResult Put(ResultDto resultDto)
+        public IActionResult Put([FromBody] ResultDto resultDto)
         {
-            throw new NotImplementedException();
+            if (resultDto == null)
+            {
+                return BadRequest();
+            }
+
+            var result = _resultService.Update(resultDto);
+
+            return Ok(result);
         }
 
         [HttpGet("{resultId}")]
         public IActionResult Delete(int resultId)
         {
-            throw new NotImplementedException();
+            var result = _resultService.GetById(resultId);
+
+            if (result == null)
+            {
+                return NotFound("result not found");
+            }
+
+            _resultService.Delete(resultId);
+
+            return NoContent();
         }
 
         // GET api/results/all/{quizId}
         [HttpGet("all/{quizId}")]
-        public string All(int quizId)
+        public IActionResult All(int quizId)
         {
-            var results = Objects(5, quizId);
+            var quiz = _quizService.GetById(quizId);
 
-            // send data as json
-            return JsonConvert.SerializeObject(results, Formatting.Indented);
+            if (quiz == null)
+            {
+                return NotFound("quiz not found");
+            }
+
+            var results = _resultService.GetAll(quizId);
+
+            return Ok(results);
         }
     }
 }
