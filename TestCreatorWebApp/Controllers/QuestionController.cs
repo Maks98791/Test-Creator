@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 using TestCreatorWebApp.Db.Models;
 using TestCreatorWebApp.Dtos;
+using TestCreatorWebApp.Services;
 
 namespace TestCreatorWebApp.Controllers
 {
@@ -14,24 +15,13 @@ namespace TestCreatorWebApp.Controllers
     [ApiController]
     public class QuestionController : ControllerBase
     {
-        public List<Question> Objects(int num, int quizId)
+        private readonly IQuizService _quizService;
+        private readonly IQuestionService _questionService;
+
+        public QuestionController(IQuizService quizService, IQuestionService questionService)
         {
-            var questions = new List<Question>();
-
-            // add sample questions
-            for (int i = 0; i < num; i++)
-            {
-                questions.Add(new Question
-                {
-                    QuestionId = i+1,
-                    QuizId = quizId,
-                    Text = "jakis przykladowy tekst",
-                    CreatedDate = DateTime.Now,
-                    LastModifiedDate = DateTime.Now
-                });
-            }
-
-            return questions;
+            _quizService = quizService;
+            _questionService = questionService;
         }
 
         [HttpGet("{questionId}")]
@@ -43,29 +33,58 @@ namespace TestCreatorWebApp.Controllers
         [HttpPost]
         public IActionResult Post(QuestionDto questionDto)
         {
-            throw new NotImplementedException();
+            if (questionDto == null)
+            {
+                return BadRequest("bad model");
+            }
+
+            var question = _questionService.Add(questionDto);
+
+            return Ok(question);
         }
 
         [HttpPost]
         public IActionResult Put(QuestionDto questionDto)
         {
-            throw new NotImplementedException();
+            if (questionDto == null)
+            {
+                return BadRequest("bad model");
+            }
+
+            var question = _questionService.Update(questionDto);
+
+            return Ok(question);
         }
 
         [HttpGet("{questionId}")]
         public IActionResult Delete(int questionId)
         {
-            throw new NotImplementedException();
+            var question = _questionService.GetById(questionId);
+
+            if (question == null)
+            {
+                return NotFound("question not found");
+            }
+
+            _questionService.Delete(questionId);
+
+            return NoContent();
         }
 
         // GET api/question/all/{quizId}
         [HttpGet("all/{quizId}")]
-        public string All(int quizId)
+        public IActionResult All(int quizId)
         {
-            var questions = Objects(5, quizId);
+            var quiz = _quizService.GetById(quizId);
 
-            // send data as json
-            return JsonConvert.SerializeObject(questions, Formatting.Indented);
+            if (quiz == null)
+            {
+                return NotFound("quiz not found");
+            }
+
+            var questions = _questionService.GetAll(quizId);
+
+            return Ok(questions);
         }
     }
 }

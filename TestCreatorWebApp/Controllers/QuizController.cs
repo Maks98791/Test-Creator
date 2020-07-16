@@ -38,7 +38,7 @@ namespace TestCreatorWebApp.Controllers
         }
 
         [HttpPost]
-        public IActionResult Post(QuizDto quizDto)
+        public IActionResult Post([FromBody] QuizDto quizDto)
         {
             if (quizDto == null)
             {
@@ -51,7 +51,7 @@ namespace TestCreatorWebApp.Controllers
         }
 
         [HttpPut]
-        public IActionResult Put(QuizDto quizDto)
+        public IActionResult Put([FromBody] QuizDto quizDto)
         {
             if (quizDto == null)
             {
@@ -75,7 +75,7 @@ namespace TestCreatorWebApp.Controllers
 
             _quizService.Delete(quizId);
 
-            return Ok();
+            return NoContent();
         }
 
         // GET api/quiz/Latest
