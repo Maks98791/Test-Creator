@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 using TestCreatorWebApp.Db.Models;
 using TestCreatorWebApp.Dtos;
+using TestCreatorWebApp.Services;
 
 namespace TestCreatorWebApp.Controllers
 {
@@ -14,58 +15,83 @@ namespace TestCreatorWebApp.Controllers
     [ApiController]
     public class AnswerController : ControllerBase
     {
-        public List<Answer> Objects(int num, int questionId)
+        private readonly IAnswerService _answerService;
+        private readonly IQuestionService _questionService;
+
+        public AnswerController(IAnswerService answerService, IQuestionService questionService)
         {
-            var answers = new List<Answer>();
-
-            // add sample answers
-            for (int i = 0; i < num; i++)
-            {
-                answers.Add(new Answer
-                {
-                    AnswerId = i + 1,
-                    QuestionId = questionId,
-                    Text = "jakis przykladowy tekst",
-                    CreatedDate = DateTime.Now,
-                    LastModifiedDate = DateTime.Now
-                });
-            }
-
-            return answers;
+            _answerService = answerService;
+            _questionService = questionService;
         }
 
         [HttpGet("{answerId}")]
         public IActionResult Get(int answerId)
         {
-            return Content("todo");
+            var answer = _answerService.GetById(answerId);
+
+            if (answer == null)
+            {
+                return NotFound("answer not found");
+            }
+
+            return Ok(answer);
         }
 
         [HttpPost]
         public IActionResult Post(AnswerDto answerDto)
         {
-            throw new NotImplementedException();
+            if (answerDto == null)
+            {
+                return BadRequest("bad model");
+            }
+
+            var answer = _answerService.Add(answerDto);
+
+            return Ok(answer);
         }
 
         [HttpPost]
         public IActionResult Put(AnswerDto answerDto)
         {
-            throw new NotImplementedException();
+            if (answerDto == null)
+            {
+                return BadRequest("bad model");
+            }
+
+            var answer = _answerService.Update(answerDto);
+
+            return Ok(answer);
         }
 
         [HttpGet("{answerId}")]
         public IActionResult Delete(int answerId)
         {
-            throw new NotImplementedException();
+            var answer = _answerService.GetById(answerId);
+
+            if (answer == null)
+            {
+                return NotFound("answer not found");
+            }
+
+            _answerService.Delete(answerId);
+
+            return NoContent();
         }
 
         // GET api/answers/all/{questionId}
         [HttpGet("all/{questionId}")]
-        public string All(int questionId)
+        public IActionResult All(int questionId)
         {
-            var answers = Objects(5, questionId);
+            var question = _questionService.GetById(questionId);
 
-            // send data as json
-            return JsonConvert.SerializeObject(answers, Formatting.Indented);
+            if (question == null)
+            {
+                return NotFound("question not found");
+            }
+
+            var answers = _answerService.GetAll(questionId);
+
+            return Ok(answers);
         }
     }
 }
