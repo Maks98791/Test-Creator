@@ -1,4 +1,3 @@
-
 interface Quiz {
   QuizId: number;
   Title: string;
