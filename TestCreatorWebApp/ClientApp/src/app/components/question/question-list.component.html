@@ -1,0 +1,26 @@
+<h3>Questions</h3>
+<div *ngIf="questions.length > 0">
+  <table class="questions">
+    <thead>
+    <tr>
+      <th>Text</th>
+      <th>Actions</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngfor="let question of questions">
+      <td>{{ question.Text }}</td>
+      <td>
+        <input type="button" value="Edit" (click)="onEdit(question)" />
+        <input type="button" value="Delete" (click)="onDelete(question)" />
+      </td>
+    </tr>
+    </tbody>
+  </table>
+</div>
+
+<div *ngIf="questions.length == 0">
+  That quiz has no questions yet.
+  Click here to add first one: <strong>Add question</strong>
+</div>
+<input type="button" value="Add question" (click)="onCreate()"/>
