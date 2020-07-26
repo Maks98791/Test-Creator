@@ -2,11 +2,11 @@
   <h2>{{ quiz.Title }}</h2>
   <ul>
     <li>
-      <label>Tytuł: </label>
-      <input [(ngModel)]="quiz.Title" placeholder="Wstaw tytuł..."/>
+      <label>Title:: </label>
+      <input [(ngModel)]="quiz.Title" placeholder="Type title..."/>
     </li>
-    <label>Opis: </label>
-    <textarea [(ngModel)]="quiz.Description" placeholder="Wstaw opis..."></textarea>
+    <label>Description: </label>
+    <textarea [(ngModel)]="quiz.Description" placeholder="Type description..."></textarea>
   </ul>
   <div>
     <input type="button" value="Edit" (click)="onEdit()"/>

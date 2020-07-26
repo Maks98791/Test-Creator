@@ -8,7 +8,7 @@
     </tr>
     </thead>
     <tbody>
-    <tr *ngfor="let question of questions">
+    <tr *ngFor="let question of questions">
       <td>{{ question.Text }}</td>
       <td>
         <input type="button" value="Edit" (click)="onEdit(question)" />

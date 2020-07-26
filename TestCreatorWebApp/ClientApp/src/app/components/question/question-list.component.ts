@@ -1,12 +1,12 @@
 import { OnChanges, Component, Input, Inject } from "@angular/core";
-import { HttpClient } from "@angular/common/http/http";
-import { Router } from "@angular/router/router";
+import { HttpClient } from "@angular/common/http";
+import { Router } from "@angular/router";
 import { SimpleChanges } from "@angular/core/core";
 
 
 @Component({
   selector: "question-list",
-  templateUrl: './question-list/component.html',
+  templateUrl: './question-list.component.html',
   styleUrls: ['./question-list.component.css']
 })
 
@@ -40,7 +40,7 @@ export class QuestionListComponent implements OnChanges {
   }
 
   onCreate() {
-    this.router.navigate(["/quesiton/create", this.quiz.QuizId]);
+    this.router.navigate(["/question/create", this.quiz.QuizId]);
   }
 
   onEdit(question: Question) {
