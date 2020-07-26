@@ -27,7 +27,14 @@ namespace TestCreatorWebApp.Controllers
         [HttpGet("{questionId}")]
         public IActionResult Get(int questionId)
         {
-            return Content("todo");
+            var question = _questionService.GetById(questionId);
+
+            if (question == null)
+            {
+                return NotFound("question not found");
+            }
+
+            return Ok(question);
         }
 
         [HttpPost]
@@ -43,7 +50,7 @@ namespace TestCreatorWebApp.Controllers
             return Ok(question);
         }
 
-        [HttpPost]
+        [HttpPut]
         public IActionResult Put([FromBody] QuestionDto questionDto)
         {
             if (questionDto == null)
@@ -56,7 +63,7 @@ namespace TestCreatorWebApp.Controllers
             return Ok(question);
         }
 
-        [HttpGet("{questionId}")]
+        [HttpDelete("{questionId}")]
         public IActionResult Delete(int questionId)
         {
             var question = _questionService.GetById(questionId);

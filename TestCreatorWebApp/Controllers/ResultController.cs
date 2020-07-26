@@ -50,7 +50,7 @@ namespace TestCreatorWebApp.Controllers
             return Ok(result);
         }
 
-        [HttpPost]
+        [HttpPut]
         public IActionResult Put([FromBody] ResultDto resultDto)
         {
             if (resultDto == null)
@@ -63,7 +63,7 @@ namespace TestCreatorWebApp.Controllers
             return Ok(result);
         }
 
-        [HttpGet("{resultId}")]
+        [HttpDelete("{resultId}")]
         public IActionResult Delete(int resultId)
         {
             var result = _resultService.GetById(resultId);
