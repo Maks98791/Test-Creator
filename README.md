@@ -11,17 +11,17 @@ Project is created with:
 
 ## Features
 #### WebAPI
-* Authorization with bearer tokens
+* todo
 
 #### ClientApp
-* All application views with Bootstrap
-* Angular components working with API endpoints
+* todo
 
 ## Content
 Project contains:
 * ASP.NET Core Web API
-* Database ...
+* Database
 * ClientApp created using Angular and Bootstrap
+* todo
 
 ## Editors
 * [Visual Studio 2019](https://visualstudio.microsoft.com/pl/) - main IDE
