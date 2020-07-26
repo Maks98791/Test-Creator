@@ -39,8 +39,11 @@
 
   <ItemGroup>
     <None Remove="ClientApp\src\app\components\about\about.component.ts" />
+    <None Remove="ClientApp\src\app\components\answer\answer-edit.component.ts" />
+    <None Remove="ClientApp\src\app\components\answer\answer-list.component.ts" />
     <None Remove="ClientApp\src\app\components\login\login.component.ts" />
     <None Remove="ClientApp\src\app\components\page-not-found\page-not-found.component.ts" />
+    <None Remove="ClientApp\src\app\components\question\question-edit.component.ts" />
     <None Remove="ClientApp\src\app\components\question\question-list.component.ts" />
     <None Remove="ClientApp\src\app\components\quiz\quiz-edit.component.ts" />
     <None Remove="ClientApp\src\app\components\quiz\quiz-list.component.ts" />
@@ -53,8 +56,11 @@
 
   <ItemGroup>
     <TypeScriptCompile Include="ClientApp\src\app\components\about\about.component.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\components\answer\answer-edit.component.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\components\answer\answer-list.component.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\components\login\login.component.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\components\page-not-found\page-not-found.component.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\components\question\question-edit.component.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\components\question\question-list.component.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\components\quiz\quiz-edit.component.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\components\quiz\quiz-list.component.ts" />
