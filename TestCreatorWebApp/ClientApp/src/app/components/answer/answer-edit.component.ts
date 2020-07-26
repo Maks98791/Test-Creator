@@ -38,13 +38,13 @@ export class AnswerEditComponent {
     var url = this.baseUrl + "api/answer";
 
     if (this.editMode) {
-      this.http.post<Answer>(url, answer).subscribe(result => {
+      this.http.put<Answer>(url, answer).subscribe(result => {
         var v = result;
         this.router.navigate(["answer/edit", v.AnswerId]);
       });
     }
     else {
-      this.http.put<Answer>(url, answer).subscribe(result => {
+      this.http.post<Answer>(url, answer).subscribe(result => {
         var v = result;
         this.router.navigate(["answer/edit", v.AnswerId]);
       });
