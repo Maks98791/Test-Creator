@@ -18,6 +18,7 @@
     <PackageReference Include="Microsoft.AspNetCore.Mvc.NewtonsoftJson" Version="3.1.6" />
     <PackageReference Include="Microsoft.AspNetCore.SpaServices.Extensions" Version="3.1.6" />
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="3.1.6" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.InMemory" Version="3.1.6" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="3.1.6" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer.Design" Version="1.1.6" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="3.1.6">
@@ -48,6 +49,8 @@
     <None Remove="ClientApp\src\app\components\quiz\quiz-edit.component.ts" />
     <None Remove="ClientApp\src\app\components\quiz\quiz-list.component.ts" />
     <None Remove="ClientApp\src\app\components\quiz\quiz.component.ts" />
+    <None Remove="ClientApp\src\app\components\result\result-edit.component.ts" />
+    <None Remove="ClientApp\src\app\components\result\result-list.component.ts" />
     <None Remove="ClientApp\src\app\interfaces\answer.ts" />
     <None Remove="ClientApp\src\app\interfaces\question.ts" />
     <None Remove="ClientApp\src\app\interfaces\quiz.ts" />
@@ -65,6 +68,12 @@
     <TypeScriptCompile Include="ClientApp\src\app\components\quiz\quiz-edit.component.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\components\quiz\quiz-list.component.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\components\quiz\quiz.component.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\components\result\result-edit.component.ts">
+      <SubType>Code</SubType>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="ClientApp\src\app\components\result\result-list.component.ts">
+      <SubType>Code</SubType>
+    </TypeScriptCompile>
     <TypeScriptCompile Include="ClientApp\src\app\interfaces\answer.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\interfaces\question.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\interfaces\quiz.ts" />
