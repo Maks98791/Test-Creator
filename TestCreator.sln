@@ -5,7 +5,7 @@ VisualStudioVersion = 16.0.30204.135
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TestCreatorWebApp", "TestCreatorWebApp\TestCreatorWebApp.csproj", "{32ABF2EE-95FF-4C3D-8D39-76B64CAC05D6}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UnitTest_xUnit", "UnitTest\UnitTest_xUnit.csproj", "{47D8D497-26DB-42B2-985D-9A60C1687BEB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UnitTests", "UnitTest\UnitTests.csproj", "{47D8D497-26DB-42B2-985D-9A60C1687BEB}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
