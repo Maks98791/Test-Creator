@@ -9,7 +9,7 @@ using TestCreatorWebApp.Dtos;
 using TestCreatorWebApp.Services;
 using Xunit;
 
-namespace UnitTest_xUnit.Controllers
+namespace UnitTests.Controllers
 {
     public class QuestionControllerTests
     {

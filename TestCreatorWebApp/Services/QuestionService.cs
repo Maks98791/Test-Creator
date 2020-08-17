@@ -13,6 +13,7 @@ namespace TestCreatorWebApp.Services
     {
         private readonly TestCreatorContext _context;
         private readonly IMapper _mapper;
+
         public QuestionService(TestCreatorContext context, IMapper mapper)
         {
             _context = context;
@@ -55,6 +56,11 @@ namespace TestCreatorWebApp.Services
             _context.SaveChanges();
 
             return question;
+        }
+
+        public List<Question> GetAllQuestions()
+        {
+            return _context.Questions.ToList();
         }
     }
 }

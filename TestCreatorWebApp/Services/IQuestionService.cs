@@ -11,5 +11,6 @@ namespace TestCreatorWebApp.Services
         public Question Add(QuestionDto questionDto);
         public Question Update(QuestionDto questionDto);
         public void Delete(int questionId);
+        public List<Question> GetAllQuestions();
     }
 }
