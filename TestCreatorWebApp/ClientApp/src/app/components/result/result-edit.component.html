@@ -1,26 +1,28 @@
-<h2>{{ title }}</h2>
-<div class="result-edit">
-  <div>
-    <label for="text">Result text:</label>
-    <br />
-    <textarea id="text" [(ngModel)]="result.Text" placeholder="Type text"></textarea>
-  </div>
+<div class="card bg-primary text-white">
+  <h2 class="card-header">{{ title }}</h2>
+  <div class="result-edit card-body">
+    <div>
+      <label for="text">Result text:</label>
+      <br />
+      <textarea class="form-control" id="text" [(ngModel)]="result.Text" placeholder="Type text"></textarea>
+    </div>
 
-  <div>
-    <label for="MinValue">Min score value:</label>
-    <br />
-    <input type="number" id="MinValue" name="MinValue" [(ngModel)]="result.MinValue" />
-  </div>
+    <div>
+      <label for="MinValue">Min score value:</label>
+      <br />
+      <input class="form-control" type="number" id="MinValue" name="MinValue" [(ngModel)]="result.MinValue" />
+    </div>
 
-  <div>
-    <label for="MaxValue">Max score value:</label>
-    <br />
-    <input type="number" id="MaxValue" name="MaxValue" [(ngModel)]="result.MaxValue" />
-  </div>
+    <div>
+      <label for="MaxValue">Max score value:</label>
+      <br />
+      <input class="form-control" type="number" id="MaxValue" name="MaxValue" [(ngModel)]="result.MaxValue" />
+    </div>
 
-  <div>
-    <input *ngIf="editMode" type="button" value="Save changes" (click)="onSubmit(result)" />
-    <input *ngIf="!editMode" type="button" value="Create result" (click)="onSubmit(result)" />
-    <input type="button" value="Cancel" (click)="onBack()" />
+    <div>
+      <input class="btn btn-success" *ngIf="editMode" type="button" value="Save changes" (click)="onSubmit(result)" />
+      <input class="btn btn-success" *ngIf="!editMode" type="button" value="Create result" (click)="onSubmit(result)" />
+      <input class="btn btn-danger" type="button" value="Cancel" (click)="onBack()" />
+    </div>
   </div>
 </div>

@@ -1,15 +1,16 @@
-<div *ngIf="quiz" class="quiz">
-  <h2>{{ quiz.Title }}</h2>
-  <ul>
-    <li>
-      <label>Title: </label>
-      <input [(ngModel)]="quiz.Title" placeholder="Type title..."/>
-    </li>
+<div class="card text-white bg-primary">
+  <div *ngIf="quiz" class="quiz card-body">
+    <h2 class="card-header">{{ quiz.Title }}</h2>
+    <br />
+    <label>Title: </label>
+    <br />
+    <input class="form-control" [(ngModel)]="quiz.Title" placeholder="Type title..." />
     <label>Description: </label>
-    <textarea [(ngModel)]="quiz.Description" placeholder="Type description..."></textarea>
-  </ul>
-  <div>
-    <input type="button" value="Edit" (click)="onEdit()"/>
-    <input type="button" value="Delete" (click)="onDelete()"/>
+    <br />
+    <textarea class="form-control" [(ngModel)]="quiz.Description" placeholder="Type description..."></textarea>
+    <div>
+      <input type="button" class="btn btn-success" value="Edit" (click)="onEdit()" />
+      <input type="button" value="Delete" class="btn btn-danger" (click)="onDelete()" />
+    </div>
   </div>
 </div>

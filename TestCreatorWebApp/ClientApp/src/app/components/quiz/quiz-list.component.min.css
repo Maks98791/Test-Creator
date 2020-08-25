@@ -1,1 +1,1 @@
-﻿ul.quizzes li{color:#000acb;cursor:pointer}ul.quizzes li.selected{background-color:#ccc}
+﻿ul.quizzes li{color:#fff;cursor:pointer;list-style-type:none}ul.quizzes li.selected{background-color:gray}

@@ -1,23 +1,26 @@
-<h2>{{ title }}</h2>
-<div class="answer-edit">
+<div class="card bg-primary text-white">
+  <h2 class="card-header">{{ title }}</h2>
+<div class="answer-edit card-body">
   <div>
     <label for="text">Answer text:</label>
-    <br/>
-    <textarea id="text" [(ngModel)]="answer.Text" placeholder="Type correct value..."></textarea>
+    <br />
+    <textarea class="form-control" id="text" [(ngModel)]="answer.Text" placeholder="Type correct value..."></textarea>
   </div>
 
   <div>
     <label for="value">Value:</label>
     <br />
-    <select id="value" name="value" [(ngModel)]="answer.Value">
+    <select class="custom-select" id="value" name="value" [(ngModel)]="answer.Value">
       <option *ngFor="let num of [-5,-4,-3,-2,-1,0,1,2,3,4,5]" value="num">{{ num }}</option>
     </select>
+    <br/>
   </div>
 
-  <div>
-    <input type="button" *ngIf="editMode" value="Save changes" (click)="onSubmit(answer)" />
-    <input type="button" *ngIf="!editMode" value="Create answer" (click)="onSubmit(answer)" />
-    <input type="button" value="Cancel" (click)="onBack()" />
+  <div class="buttons">
+    <input class="btn btn-success" type="button" *ngIf="editMode" value="Save changes" (click)="onSubmit(answer)" />
+    <input class="btn btn-success" type="button" *ngIf="!editMode" value="Create answer" (click)="onSubmit(answer)" />
+    <input class="btn btn-danger" type="button" value="Cancel" (click)="onBack()" />
   </div>
 
+</div>
 </div>

@@ -1,7 +1,7 @@
 <h3>Answers</h3>
 
 <div *ngIf="answers.length > 0">
-  <table class="answers">
+  <table class="answers table table-bordered text-white">
     <thead>
     <tr>
       <th>Text</th>
@@ -14,8 +14,8 @@
       <td>{{ answer.Text }}</td>
       <td>{{ answer.Value }}</td>
       <td>
-        <input type="button" value="Edit" (click)="onEdit(answer)" />
-        <input type="button" value="Delete" (click)="onDelete(answer)" />
+        <input class="btn btn-success" type="button" value="Edit" (click)="onEdit(answer)" />
+        <input class="btn btn-danger" type="button" value="Delete" (click)="onDelete(answer)" />
       </td>
     </tr>
     </tbody>
@@ -23,4 +23,4 @@
 </div>
 
 <div *ngIf="answers.length == 0">No answers yet. Click <strong>Add answer</strong> to add first one.</div>
-<input type="button" value="Add answer" (click)="onCreate()"/>
+<input class="btn btn-success" type="button" value="Add answer" (click)="onCreate()"/>

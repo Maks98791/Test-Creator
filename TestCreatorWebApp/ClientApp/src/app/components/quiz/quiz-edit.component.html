@@ -1,28 +1,30 @@
-<h2>{{ title }}</h2>
-<div class="quiz-edit">
-  <div>
-    <label for="title">Quiz title:</label>
-    <br />
-    <input type="text" id="title" [(ngModel)]="quiz.title" placeholder="Type title..." />
-  </div>
-  <div>
-    <label for="description">Quiz description: </label>
-    <br />
-    <input type="text" id="description" [(ngModel)]="quiz.description" placeholder="Type description..." />
-  </div>
-  <div>
-    <label for="text">Additional quiz information: </label>
-    <br />
-    <textarea id="text" [(ngModel)]="quiz.text" placeholder="Type info..."></textarea>
-  </div>
-  <div>
-    <input *ngIf="editMode" type="button" value="Save changes" (click)="onSubmit(quiz)" />
-    <input *ngIf="!editMode" type="button" value="Create quiz" (click)="onSubmit(quiz)" />
-    <input type="button" value="Back" (click)="onBack()"/>
-  </div>
+<div class="card bg-primary text-white">
+  <h2 class="card-header">{{ title }}</h2>
+  <div class="quiz-edit card-body">
+    <div>
+      <label for="title">Quiz title:</label>
+      <br />
+      <input class="form-control" type="text" id="title" [(ngModel)]="quiz.title" placeholder="Type title..." />
+    </div>
+    <div>
+      <label for="description">Quiz description: </label>
+      <br />
+      <input class="form-control"  type="text" id="description" [(ngModel)]="quiz.description" placeholder="Type description..." />
+    </div>
+    <div>
+      <label for="text">Additional quiz information: </label>
+      <br />
+      <textarea class="form-control" id="text" [(ngModel)]="quiz.text" placeholder="Type info..."></textarea>
+    </div>
+    <div>
+      <input class="btn btn-success" *ngIf="editMode" type="button" value="Save changes" (click)="onSubmit(quiz)" />
+      <input class="btn btn-success" *ngIf="!editMode" type="button" value="Create quiz" (click)="onSubmit(quiz)" />
+      <input class="btn btn-danger" type="button" value="Back" (click)="onBack()" />
+    </div>
 
-  <question-list [quiz]="quiz" *ngIf="editMode"></question-list>
+    <question-list [quiz]="quiz" *ngIf="editMode"></question-list>
 
-  <result-list [quiz]="quiz" *ngIf="editMode"></result-list>
+    <result-list [quiz]="quiz" *ngIf="editMode"></result-list>
 
+  </div>
 </div>

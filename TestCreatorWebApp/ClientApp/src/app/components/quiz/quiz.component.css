@@ -1,15 +1,22 @@
 .quiz {
   margin: 5px;
   padding: 5px 10px;
-  border: 1px solid black;
-  background-color: #dddddd;
-  width: 300px;
 }
-
 .quiz * {
   vertical-align: middle;
 }
-
 .quiz ul li {
   padding: 5px 0;
+}
+.form-control {
+  width: 300px;
+  margin-bottom: 10px;
+}
+.btn {
+  margin-right: 5px;
+  margin-bottom: 10px;
+  width: auto;
+}
+label {
+  font-weight: bold;
 }
